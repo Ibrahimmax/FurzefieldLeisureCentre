@@ -1,0 +1,258 @@
+.timetable-view {
+  width: 100%;
+}
+
+.timetable-view h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.filter-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+}
+
+.filter-group select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.legend-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.legend-box.available {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.legend-box.limited {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+}
+
+.legend-box.full {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.lessons-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.lesson-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #0066cc;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lesson-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.lesson-card.available {
+  border-left-color: #28a745;
+  background: linear-gradient(to right, rgba(40, 167, 69, 0.05), white);
+}
+
+.lesson-card.limited {
+  border-left-color: #ffc107;
+  background: linear-gradient(to right, rgba(255, 193, 7, 0.05), white);
+}
+
+.lesson-card.full {
+  border-left-color: #dc3545;
+  background: linear-gradient(to right, rgba(220, 53, 69, 0.05), white);
+  opacity: 0.75;
+}
+
+.lesson-time {
+  margin-bottom: 12px;
+}
+
+.time-value {
+  display: inline-block;
+  background-color: #0066cc;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.lesson-details {
+  margin-bottom: 16px;
+}
+
+.lesson-details h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.instructor {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.capacity {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.lesson-availability {
+  margin-bottom: 16px;
+}
+
+.availability-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.availability-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0066cc, #0052a3);
+  transition: width 0.3s ease;
+}
+
+.available-text {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.lesson-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0066cc;
+}
+
+.lesson-footer button {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.no-data {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  grid-column: 1 / -1;
+}
+
+.timetable-info {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timetable-info h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #0066cc;
+  padding-bottom: 12px;
+}
+
+.timetable-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.timetable-info li {
+  padding: 8px 0;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+
+.timetable-info li:last-child {
+  border-bottom: none;
+}
+
+.timetable-info li:before {
+  content: "✓ ";
+  color: #28a745;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    flex-direction: column;
+  }
+
+  .lessons-container {
+    grid-template-columns: 1fr;
+  }
+}
