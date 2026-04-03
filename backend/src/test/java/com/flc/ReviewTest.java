@@ -1,10 +1,11 @@
 package com.flc;
 
 import com.flc.model.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.assertThrows;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for the Review class
@@ -14,7 +15,7 @@ public class ReviewTest {
     private Member member;
     private Lesson lesson;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         member = new Member(1, "Test Member", "test@example.com");
         lesson = new Lesson(ExerciseType.YOGA, Day.SATURDAY, TimeSlot.MORNING, 1);
@@ -42,14 +43,18 @@ public class ReviewTest {
         assertEquals(5, review5.getRating());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalidRatingTooLow() {
-        new Review(member, lesson, 0, "Invalid");
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Review(member, lesson, 0, "Invalid");
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalidRatingTooHigh() {
-        new Review(member, lesson, 6, "Invalid");
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Review(member, lesson, 6, "Invalid");
+        });
     }
 
     @Test

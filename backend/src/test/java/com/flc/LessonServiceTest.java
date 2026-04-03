@@ -2,12 +2,12 @@ package com.flc;
 
 import com.flc.model.*;
 import com.flc.service.LessonService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for the LessonService class
@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class LessonServiceTest {
     private LessonService lessonService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         lessonService = new LessonService();
     }

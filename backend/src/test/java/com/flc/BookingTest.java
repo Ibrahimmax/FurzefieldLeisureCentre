@@ -1,10 +1,10 @@
 package com.flc;
 
 import com.flc.model.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for the Booking class
@@ -14,7 +14,7 @@ public class BookingTest {
     private Member member;
     private Lesson lesson;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         member = new Member(1, "Test Member", "test@example.com");
         lesson = new Lesson(ExerciseType.YOGA, Day.SATURDAY, TimeSlot.MORNING, 1);
@@ -51,8 +51,9 @@ public class BookingTest {
         assertEquals(newLesson, booking.getLesson());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testChangeToFullLesson() {
+        assertThrows(IllegalStateException.class, () -> {
         Lesson fullLesson = new Lesson(ExerciseType.ZUMBA, Day.SUNDAY, TimeSlot.AFTERNOON, 1);
         
         // Fill the lesson
@@ -67,6 +68,7 @@ public class BookingTest {
         fullLesson.addBooking(new Booking(m4, fullLesson));
         
         booking.setLesson(fullLesson); // Should throw exception
+        });
     }
 
     @Test

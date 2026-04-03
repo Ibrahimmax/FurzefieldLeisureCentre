@@ -1,10 +1,10 @@
 package com.flc;
 
 import com.flc.model.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for the Member class
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class MemberTest {
     private Member member;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         member = new Member(1, "John Doe", "john@example.com");
     }

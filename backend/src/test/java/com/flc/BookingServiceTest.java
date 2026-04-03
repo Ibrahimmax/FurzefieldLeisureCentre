@@ -3,12 +3,12 @@ package com.flc;
 import com.flc.model.*;
 import com.flc.service.BookingService;
 import com.flc.service.LessonService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for the BookingService class
@@ -19,7 +19,7 @@ public class BookingServiceTest {
     private Member testMember;
     private Lesson testLesson;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         lessonService = new LessonService();
         bookingService = new BookingService(lessonService);
@@ -73,19 +73,21 @@ public class BookingServiceTest {
         assertEquals(1, testLesson.getCurrentBookings());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testBookingFullLesson() {
+        assertThrows(IllegalStateException.class, () -> {
         Member m1 = bookingService.registerMember(2, "M1", "m1@test.com");
         Member m2 = bookingService.registerMember(3, "M2", "m2@test.com");
         Member m3 = bookingService.registerMember(4, "M3", "m3@test.com");
         Member m4 = bookingService.registerMember(5, "M4", "m4@test.com");
         Member m5 = bookingService.registerMember(6, "M5", "m5@test.com");
         
-        bookingService.bookLesson(testMember, testLesson);
-        bookingService.bookLesson(m1, testLesson);
-        bookingService.bookLesson(m2, testLesson);
-        bookingService.bookLesson(m3, testLesson);
-        bookingService.bookLesson(m4, testLesson); // This should throw exception
+            bookingService.bookLesson(testMember, testLesson);
+            bookingService.bookLesson(m1, testLesson);
+            bookingService.bookLesson(m2, testLesson);
+            bookingService.bookLesson(m3, testLesson);
+            bookingService.bookLesson(m4, testLesson); // This should throw exception
+        });
     }
 
     @Test

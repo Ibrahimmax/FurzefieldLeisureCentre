@@ -4,19 +4,19 @@ import com.flc.model.*;
 import com.flc.report.SummaryReport;
 import com.flc.service.BookingService;
 import com.flc.service.LessonService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SummaryReportTest {
     private LessonService lessonService;
     private BookingService bookingService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         lessonService = new LessonService();
         bookingService = new BookingService(lessonService);
