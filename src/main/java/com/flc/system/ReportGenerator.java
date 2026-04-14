@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class ReportGenerator {
     private BookingSystem bookingSystem;
 
-    public class InnerReportGenerator(BookingSystem bookingSystem) {
+    public ReportGenerator(BookingSystem bookingSystem) {
     
         this.bookingSystem = bookingSystem;
     }

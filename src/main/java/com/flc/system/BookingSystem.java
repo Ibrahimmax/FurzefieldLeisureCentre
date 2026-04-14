@@ -74,12 +74,12 @@ public class BookingSystem {
             return false;
         }
 
-        if(bookin.getStatus() == BookingStatus.Cancelled){
+        if(booking.getStatus() == BookingStatus.Cancelled){
             System.out.println("Booking is already cancelled");
             return false;
         }
 
-        if()booking.getStatus() == BookingStatus.ATTENDED){
+        if(booking.getStatus() == BookingStatus.ATTENDED){
             System.out.println("Cannot cancel an attended booking");
             return false;
         }

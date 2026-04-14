@@ -1,18 +1,15 @@
 package com.flc.ui;
+
 import com.flc.system.BookingSystem;
 import com.flc.system.ReportGenerator;
 
 import java.util.Scanner;
 import java.util.scanner;
 
-
-
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static BookingSystem bookingSystem = new BookingSystem();
     private static ReportGenerator reportGenerator = new ReportGenerator(bookingSystem);
-
-
     public static void main(String[] args) {
 
         System.out.println("-------------------------------------------------------");
@@ -51,7 +48,6 @@ public class Main {
         scanner.close();
     }
 
-
     private static void displayMenu() {
         System.out.println("\n--- Furzefield Leisure Booking System ---");
         System.out.println("1. Book a Lesson");
@@ -63,9 +59,6 @@ public class Main {
         System.out.print("Please enter your choice: ");
     }
 
-
-
-   
     // Functionality for booking a lesson
     private static void handleBookLesson() {
         System.out.println("\n--- Book a Lesson ---");
@@ -112,7 +105,6 @@ public class Main {
 
 
     }
-
 
     // Functionality for changing or canceling a booking
     private static void handleChangeCancel() {
@@ -170,8 +162,7 @@ public class Main {
         }
     }
 
-
-    //Functionality for attending a lesson
+    // Functionality for attending a lesson
     private static void handleAttendLesson() {
 
         System.out.println("\n--- Attend a Lesson ---");
@@ -181,12 +172,12 @@ public class Main {
 
         System.out.print("Enter booking ID: ");
         String bookingId = scanner.nextLine().trim();
-        
+
         System.out.println("Write your review");
         String review = scanner.nextLine().trim();
-        
+
         int rating = 0;
-        while (rating<1 || rating>5) {
+        while (rating < 1 || rating > 5) {
             System.out.println("Rate the lesson (1-5): ");
             try {
                 rating = Integer.parseInt(scanner.nextLine().trim());
