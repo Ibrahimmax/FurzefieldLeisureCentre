@@ -4,13 +4,12 @@ import java.util.ArrayList;
 public class Members {
     private String id;
     private String name;
-    private String email;
+    
     private ArrayList<Booking> bookings;
 
-    public Members(String id, String name, String email) {
+    public Members(String id, String name) {
         this.id = id;
         this.name = name;
-        this.email = email;
         this.bookings = new ArrayList<>();
     }
 
@@ -31,13 +30,7 @@ public class Members {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+   
 
     public ArrayList<Booking> getBookings() {
         return bookings;

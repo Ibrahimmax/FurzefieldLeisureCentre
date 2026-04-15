@@ -1,10 +1,11 @@
 package com.flc.ui;
 
+import com.flc.model.Members;
 import com.flc.system.BookingSystem;
 import com.flc.system.ReportGenerator;
 
 import java.util.Scanner;
-import java.util.scanner;
+
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
@@ -34,7 +35,7 @@ public class Main {
                     handleMonthlyReport();
                     break;
                 case 5:
-                    handleChmpionReport();
+                    handleChampionReport();
                     break;
 
                 case 6:
@@ -67,7 +68,8 @@ public class Main {
 
         System.out.println("Available Members:");
 
-        for (String member : bookingSystem.getMembers()) {
+        for (Members member : bookingSystem.getMembers())
+        {
             System.out.println(" " +member.getId() + ": " + member.getName());
         }
         System.out.print("Enter Member ID: ");
@@ -83,7 +85,7 @@ public class Main {
         if(viewChoice.equals("1"))
         {
             System.out.println("Enter the day (Saturday or Sunday): ");
-            String day = scanner.nextLine().trim();(
+            String day = scanner.nextLine().trim();
             bookingSystem.getTimetable().displayLessons(bookingSystem.getTimetable().getLessonsByDay(day));
         }
         else if(viewChoice.equals("2"))
@@ -130,21 +132,25 @@ public class Main {
             if(viewChoice.equals("1"))
             {
                 System.out.println("Enter the day (Saturday or Sunday): ");
-                String day = scanner.nextLine().trim();(
-                        bookingSystem.getTimetable().displayLessons(bookingSystem.getTimetable().getLessonsByDay(day));
-                }
-            else(viewChoice.equals("2"))
+                String day = scanner.nextLine().trim();
+                bookingSystem.getTimetable().displayLessons(bookingSystem.getTimetable().getLessonsByDay(day));
+            }
+            else if(viewChoice.equals("2"))
             {
                 System.out.println("Available Exercise Types: Yoga, Zumba, Aquacise, Box Fit, Body Blitz, Pilates");
                 System.out.println("Enter the exercise type: ");
                 String exerciseType = scanner.nextLine().trim();
                 bookingSystem.getTimetable().displayLessons(bookingSystem.getTimetable().getLessonsByExerciseType(exerciseType));
             }
+            else
+            {
+                System.out.println("Invalid choice. Returning to main menu.");
+                return;
+            }
 
             System.out.println("Enter new Lesson ID: ");
             String newLessonId = scanner.nextLine().trim();
-            bookingSystem.changeBooking(memberId, lessonId, newLessonId);
-
+            bookingSystem.changeBooking(bookingId, newLessonId);
          
         }
         else if (choice.equals("2")) {
@@ -152,7 +158,7 @@ public class Main {
             System.out.println("Are you sure you want to cancel this booking? (yes/no): ");
             String confirmation = scanner.nextLine().trim();
             if (confirmation.equalsIgnoreCase("yes")) {
-                bookingSystem.cancelBooking(memberId, lessonId);
+                bookingSystem.cancelBooking(bookingId);
                 System.out.println("Booking cancelled successfully.");
             } else {
                 System.out.println("Cancellation aborted.");
@@ -203,15 +209,26 @@ public class Main {
                 System.out.println("Invalid month. Please enter a number between 3 and 4.");
                 return;
             }
-            reportGenerator.generateMonthlyReport(month);
+            reportGenerator.generateMothlyLessonReport(month);
             
-        } catch (NumberFormatException e) {
+        }
+         catch (NumberFormatException e)
+        {
             System.out.println("Invalid input. Please enter a number between 3 and 4.");
-
-        
+        }
     }
 
+    private static int getUserChoice(){
+        try {
+            return Integer.parseInt(scanner.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1; // Invalid choice
+        }
+    }
 
+    private static void handleChampionReport(){
+        System.out.println("\n--- Champion Exercise Report ---");
+    }
     
     
 }

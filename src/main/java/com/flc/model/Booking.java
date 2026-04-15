@@ -8,7 +8,7 @@ public class Booking {
     private String review;
     private int rating ;
 
-    public Booking (String bookingId,Memeber member , Lesson lesson){
+    public Booking (String bookingId,Member member , Lessons lesson){
         this.bookingId=bookingId;
         this.userId=member;
         this.Lesson=lesson;

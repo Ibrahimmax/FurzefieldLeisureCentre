@@ -3,10 +3,10 @@ package com.flc.model;
 public class Lessons {
 
     private String lessonId;
-    private string day;
-    private string time;
-    private string exercise_type;
-    private sting price;
+    private String day;
+    private String time;
+    private String exercise_type;
+    private double price;
     private int capacity;
     private int bookedCount;
     private int weekend;
@@ -30,7 +30,7 @@ public class Lessons {
     public boolean isFull() {
         return bookedCount >= capacity;
     }
-    public void isAvailable(){
+    public boolean isAvailable(){
         return bookedCount < capacity;
     }
 

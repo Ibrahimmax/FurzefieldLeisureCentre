@@ -37,8 +37,8 @@ public class BookingSystem {
 
         }
 
-        Lessons Lesson = timetable.getLessonbyid(lessonId);
-        if (lesson == null){
+        Lessons Lesson = timetable.getLessonById(lessonId);
+        if (Lesson == null){
             System.out.println("lesson not found");
             return false;
         }
@@ -66,6 +66,42 @@ public class BookingSystem {
 
     }
     
+
+    public boolean changeBooking(String bookingId, String newLessonId){
+        Booking booking = findBookingById(bookingId);
+        if (booking == null){
+            System.out.println("Booking not found");
+            return false;
+        }
+
+        Lessons newLesson = timetable.getLessonById(newLessonId);
+        if (newLesson == null){
+            System.out.println("New lesson not found");
+            return false;
+        }
+
+        if(!newLesson.isAvailable()){
+            System.out.println("New lesson is not available");
+            return false;
+        }
+
+        if (isDuplicateBooking(booking.getMemeber(), newLesson)){
+            System.out.println("You have already booked this lesson. Please cancel the existing booking before making a new one.");
+            return false;
+        }
+
+        // Release old spot
+        booking.getLesson().decrementBooked();
+
+        // Change to new lesson
+        booking.changeLesson(newLesson);
+        newLesson.incrementBooked();
+
+        System.out.println("Booking changed successfully");
+        return true;
+
+    }
+
 
     public boolean cancelBooking(String bookingId){
         Booking booking = findBookingById(bookingId);
