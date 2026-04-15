@@ -2,6 +2,7 @@ package com.flc.ui;
 
 import com.flc.model.Members;
 import com.flc.system.BookingSystem;
+import com.flc.model.Booking;
 import com.flc.system.ReportGenerator;
 
 import java.util.Scanner;
@@ -115,6 +116,12 @@ public class Main {
         String memberId = scanner.nextLine().trim();
         System.out.print("Enter Lesson ID to Change/Cancel: ");
         String lessonId = scanner.nextLine().trim();
+        System.out.println("Enter Booking ID: ");
+        String bookingId = scanner.nextLine().trim();
+
+         bookingSystem.displayMemberBookings(memberId);
+
+         Booking booking = bookingSystem.findBookingById(bookingId);
 
         System.out.println("1. Change Booking");
         System.out.println("2. Cancel Booking");

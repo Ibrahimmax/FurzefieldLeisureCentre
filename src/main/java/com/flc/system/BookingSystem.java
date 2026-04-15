@@ -1,17 +1,19 @@
 package com.flc.system;
 import com.flc.model.*;
+
+import com.flc.model.Members;
 import java.util.ArrayList;
 
 public class BookingSystem {
     private ArrayList<Booking> bookings;
     private ArrayList<Members> members;
-    private timetable timetable;
+    private Timetable timetable;
     private int bookiingCount;
     
     public BookingSystem(){
         this.bookings=new ArrayList<>();
         this.members=new ArrayList<>();
-        this.timetable=new timetable();
+        this.timetable=new Timetable();
         this.bookiingCount=1;
         intializeMembers();
     }
@@ -55,17 +57,21 @@ public class BookingSystem {
 
         // Release old spot if the member has a previous booking
 
-        booking.getLesson().decrementBooked();
-
-        // change to new Lesson 
-        booking.changeLesson(newLesson);
-        newLesson.incrementBooked();
 
         System.out.println("Booking changed successfully");
 
 
     }
     
+    public Booking findBookingById(String bookingId){
+        for (Booking b: bookings){
+            if (b.getBookingId().equalsIgnoreCase(bookingId)){
+                return b;
+            }
+        }
+        return null;
+    }
+
 
     public boolean changeBooking(String bookingId, String newLessonId){
         Booking booking = findBookingById(bookingId);
@@ -85,7 +91,7 @@ public class BookingSystem {
             return false;
         }
 
-        if (isDuplicateBooking(booking.getMemeber(), newLesson)){
+        if (isDuplicateBooking(booking.getMember(), newLesson)){
             System.out.println("You have already booked this lesson. Please cancel the existing booking before making a new one.");
             return false;
         }
@@ -122,7 +128,7 @@ public class BookingSystem {
 
         booking.getLesson().decrementBooked();
         booking.cancel();
-        booking.getMemeber().removeBooking(booking);
+        booking.getMember().removeBooking(booking);
         System.out.println("Booking cancelled successfully");
         return true;
 
@@ -155,8 +161,8 @@ public class BookingSystem {
 
     }
 
-    public Member findMemberById(String Id){
-        for (Member m : members){
+    public Members findMemberById(String Id){
+        for (Members m : members){
             if(m.getId().equalsIgnoreCase(Id)){
                 return m;
             }
@@ -166,9 +172,9 @@ public class BookingSystem {
 
 
 
-    public boolean isDuplicateBooking(Member member, Lesson lesson){
+    public boolean isDuplicateBooking(Members member, Lesson lesson){
         for (Booking b : member.getBookings()){
-            if (b.getMemeber().getLessonId().equals(lesson.getLessonId())
+            if (b.getMember().getId().equals(member.getId())
             && (b.getStatus() == BookingStatus.CANCELLED)){
                 return true;
             }
