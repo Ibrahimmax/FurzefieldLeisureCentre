@@ -1,12 +1,12 @@
 package com.flc.system;
 import com.flc.model.*;
 
-import com.flc.model.Members;
+import com.flc.model.Member;
 import java.util.ArrayList;
 
 public class BookingSystem {
     private ArrayList<Booking> bookings;
-    private ArrayList<Members> members;
+    private ArrayList<Member> members;
     private Timetable timetable;
     private int bookiingCount;
     
@@ -18,34 +18,34 @@ public class BookingSystem {
         intializeMembers();
     }
     private void intializeMembers(){
-        members.add(new Members("M001","Hassan"));
-        members.add(new Members("M002","Ali"));
-        members.add(new Members("M003","Hamza"));
-        members.add(new Members("M004","Sara"));
-        members.add(new Members("M005","Ayesha"));
-        members.add(new Members("M006","Zainab"));
-        members.add(new Members("M007","Omar"));
-        members.add(new Members("M008","Fatima"));
-        members.add(new Members("M009","Ahmed"));
-        members.add(new Members("M010","Maryam"));
+        members.add(new Member("M001","Hassan"));
+        members.add(new Member("M002","Ali"));
+        members.add(new Member("M003","Hamza"));
+        members.add(new Member("M004","Sara"));
+        members.add(new Member("M005","Ayesha"));
+        members.add(new Member("M006","Zainab"));
+        members.add(new Member("M007","Omar"));
+        members.add(new Member("M008","Fatima"));
+        members.add(new Member("M009","Ahmed"));
+        members.add(new Member("M010","Maryam"));
     }
 
     public boolean bookLesson(String memberId , String lessonId)
     {
-        Member member= findMemberById(memberId);
-        if(member == null){
+        Member members= findMemberById(memberId);
+        if(members == null){
             System.out.println("Member not found");
             return false;
 
         }
 
-        Lessons Lesson = timetable.getLessonById(lessonId);
-        if (Lesson == null){
+        Lessons Lessons = timetable.getLessonById(lessonId);
+        if (Lessons == null){
             System.out.println("lesson not found");
             return false;
         }
 
-        if(!Lesson.isAvailable()){
+        if(!Lessons.isAvailable()){
             System.out.println("lesson not available");
             return false;
         }
@@ -161,8 +161,8 @@ public class BookingSystem {
 
     }
 
-    public Members findMemberById(String Id){
-        for (Members m : members){
+    public Member findMemberById(String Id){
+        for (Member m : members){
             if(m.getId().equalsIgnoreCase(Id)){
                 return m;
             }
@@ -172,9 +172,9 @@ public class BookingSystem {
 
 
 
-    public boolean isDuplicateBooking(Members member, Lesson lesson){
-        for (Booking b : member.getBookings()){
-            if (b.getMember().getId().equals(member.getId())
+    public boolean isDuplicateBooking(Member members, Lessons lessons){
+        for (Booking b : members.getBookings()){
+            if (b.getMember().getId().equals(members.getId())
             && (b.getStatus() == BookingStatus.CANCELLED)){
                 return true;
             }
@@ -187,23 +187,23 @@ public class BookingSystem {
     }
 
     public void displayMemberBookings(String memberId){
-        Member member = findMemberById(memberId);
-        if(member == null){
+        Member members = findMemberById(memberId);
+        if(members == null){
             System.out.println("Member not found");
             return;
         }
 
 
-        System.out.println("Bookings for member: " + member.getName());
+        System.out.println("Bookings for member: " + members.getName());
 
 
-        if(member.getBookings().isEmpty()){
+        if(members.getBookings().isEmpty()){
             System.out.println("No bookings found for this member");
             return;
         }
 
-        for(Booking b: member.getBookings()){
-            System.out.println("ID: %-6s | %-10s  %-10s %-12s | stsus:%s%n" + b.getBookingId(), b.getLesson().getName(), b.getLesson().getInstructor(), b.getLesson().getTime(), b.getStatus());
+        for(Booking b: members.getBookings()){
+            System.out.printf("ID: %-6s | %-10s  %-10s %-12s | status:%s%n", b.getBookingId(), b.getLesson().getName(), b.getLesson().getInstructor(), b.getLesson().getTime(), b.getStatus());
         }
 
         
@@ -212,7 +212,7 @@ public class BookingSystem {
     public Timetable getTimetable() {
         return timetable;
     }
-    public ArrayList<Members> getMembers() {
+    public ArrayList<Member> getMembers() {
         return members;
     }
     public ArrayList<Booking> getBookings() {

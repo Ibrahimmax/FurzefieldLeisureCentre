@@ -1,6 +1,6 @@
 package com.flc.ui;
 
-import com.flc.model.Members;
+import com.flc.model.Member;
 import com.flc.system.BookingSystem;
 import com.flc.model.Booking;
 import com.flc.system.ReportGenerator;
@@ -69,9 +69,9 @@ public class Main {
 
         System.out.println("Available Members:");
 
-        for (Members member : bookingSystem.getMembers())
+        for (Member members : bookingSystem.getMembers())
         {
-            System.out.println(" " +member.getId() + ": " + member.getName());
+            System.out.println(" " +members.getId() + ": " + members.getName());
         }
         System.out.print("Enter Member ID: ");
         String memberId = scanner.nextLine().trim();

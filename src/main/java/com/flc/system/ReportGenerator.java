@@ -82,12 +82,12 @@ public class ReportGenerator {
 
 
 
-    public int calculatorAttendedCount(Lesson lesson)
+    public int calculatorAttendedCount(Lessons lessons)
     {
         int count=0;
         for(Booking b: bookingSystem.getBookings())
         {
-            if(b.getLesson().getLessonId().equals(lesson.getLessonId()) && b.getStatus()==BookingStatus.ATTENDED)
+            if(b.getLesson().getLessonId().equals(lessons.getLessonId()) && b.getStatus()==BookingStatus.ATTENDED)
             {
                 count++;
             }
@@ -96,14 +96,14 @@ public class ReportGenerator {
     }
 
 
-    public double calculateAverageRating(Lesson lesson)
+    public double calculateAverageRating(Lessons lessons)
     {
         int totalRating=0;
         int ratingCount=0;
 
         for(Booking b: bookingSystem.getBookings())
         {
-            if(b.getLesson().getLessonId().equals(lesson.getLessonId()) && b.getStatus()==BookingStatus.ATTENDED)
+            if(b.getLesson().getLessonId().equals(lessons.getLessonId()) && b.getStatus()==BookingStatus.ATTENDED)
             {
                 totalRating+=b.getRating();
                 ratingCount++;
