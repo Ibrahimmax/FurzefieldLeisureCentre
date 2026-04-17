@@ -74,7 +74,7 @@ public class Main {
             System.out.println(" " +m.getId() + ": " + m.getName());
         }
         System.out.print("Enter Member ID: ");
-        Member memberId = bookingSystem.getMemberById(scanner.nextLine().trim());
+        Member member = bookingSystem.getMemberById(scanner.nextLine().trim());
 
         System.out.println("\nView timetable by:");
         System.out.println("1. View by Day(Saturday or Sunday)");
@@ -83,29 +83,27 @@ public class Main {
         String viewChoice = scanner.nextLine().trim();
 
 
-        if(viewChoice.equals("1"))
+        if (viewChoice.equals("1"))
         {
             System.out.println("Enter the day (Saturday or Sunday): ");
             String day = scanner.nextLine().trim();
             bookingSystem.getTimetable().displayLessons(bookingSystem.getTimetable().getLessonsByDay(day));
         }
-        else if(viewChoice.equals("2"))
+        else if (viewChoice.equals("2"))
         {
             System.out.println("Available Exercise Types: Yoga, Zumba, Aquacise, Box Fit, Body Blitz, Pilates");
             System.out.println("Enter the exercise type: ");
             String exerciseType = scanner.nextLine().trim();
             bookingSystem.getTimetable().displayLessons(bookingSystem.getTimetable().getLessonsByExerciseType(exerciseType));
         }
-        else
-        {
+        else {
             System.out.println("Invalid choice. Returning to main menu.");
             return;
         }
 
         System.out.println("Enter Lessons ID to Book: ");
-        Member memberId = bookingSystem.getMemberById(memberId.getId());
         String lessonId = scanner.nextLine().trim();
-        bookingSystem.bookLessons(memberId, lessonId);
+        bookingSystem.bookLessons(member, lessonId);
 
 
     }
@@ -145,7 +143,7 @@ public class Main {
             {
                 System.out.println("Enter the day (Saturday or Sunday): ");
                 String day = scanner.nextLine().trim();
-                bookingSystem.getTimetable().displayLessons(bookingSystem.getTimetable().getLessonsByDay(day));
+                Member memberId = bookingSystem.getMemberById(scanner.nextLine().trim());
             }
             else if(viewChoice.equals("2"))
             {

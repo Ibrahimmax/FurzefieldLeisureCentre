@@ -31,8 +31,8 @@ public class BookingSystem {
         member.add(new Member("M010", "Maryam"));
     }
 
-    public boolean bookLessons(Member memberId, String lessonId) {
-        Member member = getMemberById(memberId);
+    public boolean bookLessons(Member member, String lessonId) {
+        // Member member = getMemberById(memberId);
         if (member == null) {
             System.out.println("Member not found");
             return false;
@@ -59,6 +59,7 @@ public class BookingSystem {
         // Release old spot if the member has a previous booking
 
         System.out.println("Booking changed successfully");
+        return true;
 
     }
 
