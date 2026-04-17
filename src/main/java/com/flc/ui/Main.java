@@ -17,9 +17,10 @@ public class Main {
         System.out.println("-------------------------------------------------------");
         System.out.println("Welcome to the Furzefield Leisure Booking System!");
         System.out.println("-------------------------------------------------------");
-        boolean exit = true;
+        boolean exit = false;
         while (!exit) {
             displayMenu();
+            System.out.print("Please enter your choice: ");
             int choice = getUserChoice();
             switch (choice) {
                 case 1:
