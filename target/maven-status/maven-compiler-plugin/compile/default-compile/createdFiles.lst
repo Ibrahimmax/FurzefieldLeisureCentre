@@ -1,0 +1,4 @@
+com\flc\model\Lessons.class
+com\flc\model\Booking.class
+com\flc\model\Member.class
+com\flc\model\BookingStatus.class

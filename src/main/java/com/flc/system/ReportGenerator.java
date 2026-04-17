@@ -1,11 +1,15 @@
-import com.flc.system.*;
+package com.flc.system;
 import com.flc.model.*;
 import java.util.ArrayList;
+
 public class ReportGenerator {
     private BookingSystem bookingSystem;
 
 
-    public void generateMothlyLessonsReport(int month)
+    public ReportGenerator(BookingSystem bookingSystem) {
+        this.bookingSystem = bookingSystem;
+    }
+    public void generateMonthlyLessonsReport(int month)
     {
         System.out.println("\n--------------------------------------------------");
         
@@ -78,6 +82,9 @@ public class ReportGenerator {
 
 
 
+
+
+    
     public int calculatorAttendedCount(Lessons lesson)
     {
         int count=0;
@@ -124,21 +131,6 @@ public class ReportGenerator {
 
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

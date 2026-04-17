@@ -2,38 +2,37 @@ package com.flc.system;
 
 import com.flc.model.*;
 
-import com.flc.model.Member;
 import java.util.ArrayList;
 
 public class BookingSystem {
     private ArrayList<Booking> bookings;
-    private ArrayList<Member> Member;
+    private ArrayList<Member> member;
     private Timetable timetable;
     private int bookiingCount;
 
     public BookingSystem() {
         this.bookings = new ArrayList<>();
-        this.Member = new ArrayList<>();
+        this.member = new ArrayList<>();
         this.timetable = new Timetable();
         this.bookiingCount = 1;
         intializeMember();
     }
 
     private void intializeMember() {
-        Member.add(new Member("M001", "Hassan"));
-        Member.add(new Member("M002", "Ali"));
-        Member.add(new Member("M003", "Hamza"));
-        Member.add(new Member("M004", "Sara"));
-        Member.add(new Member("M005", "Ayesha"));
-        Member.add(new Member("M006", "Zainab"));
-        Member.add(new Member("M007", "Omar"));
-        Member.add(new Member("M008", "Fatima"));
-        Member.add(new Member("M009", "Ahmed"));
-        Member.add(new Member("M010", "Maryam"));
+        member.add(new Member("M001", "Hassan"));
+        member.add(new Member("M002", "Ali"));
+        member.add(new Member("M003", "Hamza"));
+        member.add(new Member("M004", "Sara"));
+        member.add(new Member("M005", "Ayesha"));
+        member.add(new Member("M006", "Zainab"));
+        member.add(new Member("M007", "Omar"));
+        member.add(new Member("M008", "Fatima"));
+        member.add(new Member("M009", "Ahmed"));
+        member.add(new Member("M010", "Maryam"));
     }
 
-    public boolean bookLessons(String memberId, String lessonId) {
-        Member member = findMemberById(memberId);
+    public boolean bookLessons(Member memberId, String lessonId) {
+        Member member = getMemberById(memberId);
         if (member == null) {
             System.out.println("Member not found");
             return false;
@@ -157,8 +156,8 @@ public class BookingSystem {
 
     }
 
-    public Member findMemberById(String Id) {
-        for (Member m : Member) {
+    public Member getMemberById(String Id) {
+        for (Member m : member) {
             if (m.getId().equalsIgnoreCase(Id)) {
                 return m;
             }
@@ -206,7 +205,7 @@ public class BookingSystem {
     }
 
     public ArrayList<Member> getMember() {
-        return Member;
+        return member;
     }
 
     public ArrayList<Booking> getBookings() {

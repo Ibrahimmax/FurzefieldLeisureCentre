@@ -69,9 +69,9 @@ public class Main {
 
         System.out.println("Available Member:");
 
-        for (Member Member : bookingSystem.getMember())
+        for (Member m : bookingSystem.getMember())
         {
-            System.out.println(" " +Member.getId() + ": " + Member.getName());
+            System.out.println(" " +m.getId() + ": " + m.getName());
         }
         System.out.print("Enter Member ID: ");
         Member memberId = bookingSystem.getMemberById(scanner.nextLine().trim());
@@ -103,6 +103,7 @@ public class Main {
         }
 
         System.out.println("Enter Lessons ID to Book: ");
+        Member memberId = bookingSystem.getMemberById(memberId.getId());
         String lessonId = scanner.nextLine().trim();
         bookingSystem.bookLessons(memberId, lessonId);
 
@@ -112,25 +113,24 @@ public class Main {
     // Functionality for changing or canceling a booking
     private static void handleChangeCancel() {
         System.out.println("\n--- Change or Cancel Booking ---");
-        System.out.print("Enter Member ID: ");
-        Member memberId = bookingSystem.getMemberById(scanner.nextLine().trim());
+        System.out.println("Enter Member ID: ");
+        Member member = bookingSystem.getMemberById(scanner.nextLine().trim());
 
-         bookingSystem.displayMemberBookings(memberId);
+        bookingSystem.displayMemberBookings(member);
 
-         System.out.print("Enter Booking ID: ");
-         String bookingId = scanner.nextLine().trim();
-        System.out.print("Enter Lessons ID to Change/Cancel: ");
-        String lessonId = scanner.nextLine().trim();
         System.out.println("Enter Booking ID: ");
         String bookingId = scanner.nextLine().trim();
+        System.out.println("Enter Lessons ID to Change/Cancel: ");
+        String lessonId = scanner.nextLine().trim();
 
-         bookingSystem.displayMemberBookings(memberId);
+
+        
 
          Booking booking = bookingSystem.findBookingById(bookingId);
 
         System.out.println("1. Change Booking");
         System.out.println("2. Cancel Booking");
-        System.out.print("Enter your choice: ");
+        System.out.println("Enter your choice: ");
         String choice = scanner.nextLine().trim();
 
         if (choice.equals("1")) {
@@ -138,7 +138,7 @@ public class Main {
             System.out.println("1: Day:");
             System.out.println("2: Exercise Type:");
 
-            System.out.print("Enter your choice: ");
+            System.out.println("Enter your choice: ");
             String viewChoice = scanner.nextLine().trim();
 
             if(viewChoice.equals("1"))
@@ -235,7 +235,7 @@ public class Main {
                 System.out.println("Invalid month. Please enter a number between 3 and 4.");
                 return;
             }
-            reportGenerator.generateMothlyLessonsReport(month);
+            reportGenerator.generateMonthlyLessonsReport(month);
             
         }
          catch (NumberFormatException e)
