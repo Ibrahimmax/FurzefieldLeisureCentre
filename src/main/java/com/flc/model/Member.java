@@ -1,13 +1,13 @@
 package com.flc.model;
 import java.util.ArrayList;
 
-public class Members {
+public class Member {
     private String id;
     private String name;
     
     private ArrayList<Booking> bookings;
 
-    public Members(String id, String name) {
+    public Member(String id, String name) {
         this.id = id;
         this.name = name;
         this.bookings = new ArrayList<>();

@@ -1,9 +1,9 @@
 package com.flc.model;
 
 public enum BookingStatus {
-    BOOKED,
-    ATTENDED,
-    CANCELLED,
-    CHANGED
+    Booked,
+    Attended,
+    Cancelled,
+    Changed
 }
 

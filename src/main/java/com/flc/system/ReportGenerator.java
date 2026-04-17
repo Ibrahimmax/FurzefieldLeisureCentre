@@ -1,33 +1,29 @@
-package com.flc.system;
+import com.flc.system.*;
 import com.flc.model.*;
 import java.util.ArrayList;
 public class ReportGenerator {
     private BookingSystem bookingSystem;
 
-    public ReportGenerator(BookingSystem bookingSystem) {
-    
-        this.bookingSystem = bookingSystem;
-    }
 
-    public void generateMothlyLessonReport(int month)
+    public void generateMothlyLessonsReport(int month)
     {
         System.out.println("\n--------------------------------------------------");
         
-        system.out.println("Monthly Lesson Report for Month: " + month);
+        System.out.println("Monthly Lessons Report for Month: " + month);
         System.out.print("===============================================================");
 
         System.out.printf("%-6s %-10s %-10s %-12s %-9s %-10s%n","ID","Day","Type","Attended","Avg rating");
         System.out.println("------------------------------------------------------------------------------");
 
-        ArrayList<Lesson>monthLessons=bookingSystem.getTimetable().getLessonsByMonth(month);
+        ArrayList<Lessons>monthLessons=bookingSystem.getTimetable().getLessonsByMonth(month);
 
         if(monthLessons.isEmpty())
         {
-            System.out.println("No Lesson found for this Month");
+            System.out.println("No Lessons found for this Month");
             return;
         }
 
-        for(Lesson ln: monthLessons)
+        for(Lessons ln: monthLessons)
         {
             int attended=calculatorAttendedCount(ln);
             double avgrating = calculateAverageRating(ln);
@@ -51,7 +47,7 @@ public class ReportGenerator {
         double highestAvgRating=0.0;
 
 
-        System.out.println("%-14s %-10s%n","Exercise Type","Income");
+        System.out.printf("%-14s %-10s%n","Exercise Type","Income");
         System.out.println("--------------------------------------------------");
 
 
@@ -82,12 +78,12 @@ public class ReportGenerator {
 
 
 
-    public int calculatorAttendedCount(Lessons lessons)
+    public int calculatorAttendedCount(Lessons lesson)
     {
         int count=0;
         for(Booking b: bookingSystem.getBookings())
         {
-            if(b.getLesson().getLessonId().equals(lessons.getLessonId()) && b.getStatus()==BookingStatus.ATTENDED)
+            if(b.getLessons().getLessonId().equals(lesson.getLessonId()) && b.getStatus()==BookingStatus.Attended)
             {
                 count++;
             }
@@ -96,14 +92,14 @@ public class ReportGenerator {
     }
 
 
-    public double calculateAverageRating(Lessons lessons)
+    public double calculateAverageRating(Lessons lesson)
     {
         int totalRating=0;
         int ratingCount=0;
 
         for(Booking b: bookingSystem.getBookings())
         {
-            if(b.getLesson().getLessonId().equals(lessons.getLessonId()) && b.getStatus()==BookingStatus.ATTENDED)
+            if(b.getLessons().getLessonId().equals(lesson.getLessonId()) && b.getStatus()==BookingStatus.Attended)
             {
                 totalRating+=b.getRating();
                 ratingCount++;
@@ -119,9 +115,9 @@ public class ReportGenerator {
         double income=0.0;
         for(Booking b: bookingSystem.getBookings())
         {
-            if(b.getLesson().getType().equalsIgnoreCase(type) && b.getStatus()==BookingStatus.ATTENDED && b.getLesson().getMonth()==month)
+            if(b.getLessons().getType().equalsIgnoreCase(type) && b.getStatus()==BookingStatus.Attended && b.getLessons().getMonth()==month)
             {
-                income+=b.getLesson().getPrice();
+                income+=b.getLessons().getPrice();
             }
         }
         return income;

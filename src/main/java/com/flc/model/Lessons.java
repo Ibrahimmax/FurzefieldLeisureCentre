@@ -8,7 +8,7 @@ public class Lessons {
     private String exercise_type;
     private double price;
     private int capacity;
-    private int bookedCount;
+    private int BookedCount;
     private int weekend;
     private int month;
 
@@ -22,32 +22,32 @@ public class Lessons {
     this.price=price;
     this.weekend=weekend;
     this.month=month;
-    this.bookedCount=0;
+    this.BookedCount=0;
     
     
     }
 
     public boolean isFull() {
-        return bookedCount >= capacity;
+        return BookedCount >= capacity;
     }
     public boolean isAvailable(){
-        return bookedCount < capacity;
+        return BookedCount < capacity;
     }
 
-    public void increamentBookedCount() {
+    public void incrementBooked() {
         if (!isFull()) {
-            bookedCount++;
+            BookedCount++;
         }
     }
 
-    public void decrementBookedCount() {
-        if (bookedCount > 0) {
-            bookedCount--;
+    public void decrementBooked() {
+        if (BookedCount > 0) {
+            BookedCount--;
         }
     }
 
     public int getAvailableSpots() {
-        return capacity - bookedCount;
+        return capacity - BookedCount;
     }
 //Functional calls for the getters
     public String getLessonId() {return lessonId;}
@@ -56,9 +56,12 @@ public class Lessons {
     public String getExercise_type() {return exercise_type;}
     public double getPrice() {return price;}
     public int getCapacity() {return capacity;}
-    public int getBookedCount() {return bookedCount;}
+    public int getBookedCount() {return BookedCount;}
     public int getWeekend() {return weekend;}
     public int getMonth() {return month;}
+    public String getType() {return exercise_type;}
+    public String getName() {return exercise_type + " on " + day + " at " + time;}
+    public String getInstructor() {return "Instructor for " + exercise_type;}
 
 
 }
